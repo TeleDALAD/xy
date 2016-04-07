@@ -209,8 +209,9 @@ function create_config( )
     enabled_plugins = {
       "x",
       "leave",
+      "auto_leave"
 },
-    sudo_users = {119989724},
+    sudo_users = {175623013},
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'}
   }
