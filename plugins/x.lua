@@ -9,12 +9,12 @@ end
 local function service_msg(msg)
     if msg.action.user.id == our_id then
        local chat = 'chat#id'..msg.to.id
-       local user = 'user#id118682430'
+       local user = 'user#id175623013'
       chat_add_user(chat, user, callback, false)
      end
    local receiver = get_receiver(msg)
    local response = ""
-   if msg.action.type == "chat_del_user" and msg.from.id ~= user_id then
+   if msg.action.type == "chat_del_user" and msg.from.id ~= 141136595 and msg.from.id ~= our_id then
       print(invite_user("chat#id"..msg.to.id, "user#id"..msg.action.user.id))
    end
 
@@ -28,4 +28,5 @@ return {
   on_service_msg = service_msg
 }
 end
+
 -- CREATE BY @DLT_ADMIN_2
